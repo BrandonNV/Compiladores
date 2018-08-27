@@ -1,3 +1,4 @@
+import java.util.Collections;
 
 public class MiListener extends RomanoBaseListener {
 	@Override public void enterUnidades(RomanoParser.UnidadesContext ctx) {
@@ -25,8 +26,9 @@ public class MiListener extends RomanoBaseListener {
 	@Override public void enterDecenas(RomanoParser.DecenasContext ctx) { 
 		int i = Integer.parseInt(ctx.getText());
 		if(i <= 3) 
-			for(int j = 1; j <= i; j++) 
-				System.out.print('X');
+			System.out.print(String.join("", java.util.Collections.nCopies(i,"I")));
+			/*for(int j = 1; j <= i; j++) 
+				System.out.print('X'); */
 		else if (i == 4)
 			System.out.print("XL");
 		else if (i == 5)
