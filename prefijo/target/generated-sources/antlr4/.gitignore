@@ -1,0 +1,14 @@
+/Hello.tokens
+/HelloBaseListener.java
+/HelloLexer.java
+/HelloLexer.tokens
+/HelloListener.java
+/HelloParser.java
+/prefijo.tokens
+/prefijoBaseListener.java
+/prefijoLexer.java
+/prefijoLexer.tokens
+/prefijoListener.java
+/prefijoParser.java
+/prefijo.interp
+/prefijoLexer.interp
