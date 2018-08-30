@@ -17,14 +17,29 @@ public class Lexer {
 		reserve( new Word(Tag.TRUE, "true") ); 
 		reserve( new Word(Tag.FALSE, "false") ); 
 	} 
-	
-	public Token scan() throws IOException { 
+	public void skipBlanks() throws IOException {
 		for( ; ; peek = (char)System.in.read() ) {
 			if( peek == ' ' || peek == '\t' ) continue; 
 			else if( peek == '\n' ) line = line + 1; 
 			else break; 
 		}
+	}
 	
+	/* salta espacios en blanco */
+	public Token scan() throws IOException { 
+		skipBlanks();
+		// para comentarios de una línea 
+		if (peek == '/') {
+			char peek2;
+			System.in.mark(1);
+			peek2 = (char)System.in.read();
+			if (peek2 == '/') 
+			   while ((peek = (char)System.in.read()) != '\n');
+			else
+				System.in.reset();
+		} 
+		skipBlanks();
+		/* Para generar un entero */
 		if( Character.isDigit(peek) ) { 
 			int v = 0; 
 			do { 
@@ -34,6 +49,8 @@ public class Lexer {
 			return new Num(v); 
 		}
 		
+		
+		/* Para generar un identificador */
 		if( Character.isLetter(peek) ) { 
 			StringBuffer b = new StringBuffer(); 
 			do { 
